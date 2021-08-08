@@ -13,6 +13,7 @@ delay(2000).then(logger);
 delay(1000).then(logger);
 delay(1500).then(logger);
 
+
 // Task-2
 const users = [
     { name: 'Mango', active: true },
@@ -22,16 +23,19 @@ const users = [
 ];
 
 const toggleUserState = (allUsers, userName) => {
-    const updatedUsers = allUsers.map(user =>
+    return new Promise((resolve) => {
+        const updatedUsers = allUsers.map(user =>
         user.name === userName ? { ...user, active: !user.active } : user,
     );
-     return Promise.all(updatedUsers);
+        resolve(updatedUsers);
+    });
 };
 
 const loggers = updatedUsers => console.table(updatedUsers);
 
 toggleUserState(users, 'Mango').then(loggers);
 toggleUserState(users, 'Lux').then(loggers);
+
 
 //Task-3
 const randomIntegerFromInterval = (min, max) => {
